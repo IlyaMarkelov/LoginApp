@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="logInAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rmi-Ij-lWU"/>
-                                            <segue destination="XFj-9d-fuU" kind="presentation" modalPresentationStyle="fullScreen" id="IrO-na-xDb"/>
+                                            <segue destination="XFj-9d-fuU" kind="presentation" identifier="showWelcomeVC" modalPresentationStyle="fullScreen" id="IrO-na-xDb"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="M6s-Wg-ouc">
@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="18.46153846153846" y="97.393364928909946"/>
         </scene>
-        <!--Access Login View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="EBS-we-FPK">
             <objects>
-                <viewController id="XFj-9d-fuU" customClass="AccessLoginViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XFj-9d-fuU" customClass="WelcomeViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vdm-gg-Ism">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

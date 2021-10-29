@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     // MARK: - IB Outlets
     @IBOutlet var userNameTextField: UITextField!
@@ -21,11 +21,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        userNameTextField.delegate = self
+        userNameTextField.returnKeyType = .next
+            
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .done
+            
+        passwordTextField.isEnabled = true
+        passwordTextField.enablesReturnKeyAutomatically = true
+        }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let accessLoginVC = segue.destination as? AccessLoginViewController else { return }
+        guard let accessLoginVC = segue.destination as? WelcomeViewController else { return }
         accessLoginVC.userName = userNameTextField.text
     }
     
@@ -63,11 +71,24 @@ class ViewController: UIViewController {
         alertController.addAction(action)
         present(alertController, animated: true)
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
     
-    // MARK: - Manage keyboard by tap
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            logInAction()
+            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
+        }
+        return true
+    }
 }
+
 

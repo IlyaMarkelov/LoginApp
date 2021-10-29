@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccessLoginViewController: UIViewController {
+class WelcomeViewController: UIViewController {
 
     @IBOutlet var greetingsUserNameLabel: UILabel!
     
