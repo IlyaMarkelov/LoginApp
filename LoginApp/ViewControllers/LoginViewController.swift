@@ -14,10 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     
     // MARK: - Private properties
-    private var correctUserName = "User"
-    private var correctPassword = "Password"
+    private let user = User.getUserData()
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +31,15 @@ class LoginViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let accessLoginVC = segue.destination as? WelcomeViewController else { return }
-        accessLoginVC.userName = userNameTextField.text
+        let tabBarController = segue.destination as! UITabBarController
+        let viewControllers = tabBarController.viewControllers
+        if let vcs = viewControllers {
+            for viewController in vcs {
+                if let welcomeVC = viewController as? WelcomeViewController { welcomeVC.user = user }
+                if let generalVC = viewController as? GeneralViewController { generalVC.user = user }
+                if let hobbyVC = viewController as? HobbyViewController { hobbyVC.user = user }
+            }
+        }
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -44,7 +49,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - IB Actions
     @IBAction func logInAction() {
-        if userNameTextField.text != correctUserName || passwordTextField.text != correctPassword {
+        if userNameTextField.text != user.login || passwordTextField.text != user.password {
             alert(title: "Invalid login or password",
                   message: "Please, enter correct login and password",
                   textField: passwordTextField)
@@ -53,12 +58,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotUserNameAction() {
         alert(title: "Oops!",
-              message: "Your user name is \(correctUserName)")
+              message: "Your user name is \(user.login)")
     }
     
     @IBAction func forgotPasswordAction() {
         alert(title: "Oops!",
-              message: "Your password is \(correctPassword)")
+              message: "Your password is \(user.password)")
     }
     
     // MARK: - Alert action
